@@ -1,3 +1,29 @@
-.WorldOfCheckboxDefault{
-    
+.WorldOfCheckboxDefault {
+}
+.WorldOfCheckboxDefault__One__outsideClass {
+}
+.WorldOfCheckboxDefault__One__insideClass {
+}
+.WorldOfCheckboxDefault__One__generalClass {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  color: white;
+}
+.WorldOfCheckboxDefault__One__centerClass {
+  font-family: sf pro display;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 510;
+  color: #999;
+  text-align: center;
+  cursor: pointer;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: auto;
+  background-position: top;
+  width: 24px;
+  height: 21px;
+  transition: background 0.2s ease;
 }

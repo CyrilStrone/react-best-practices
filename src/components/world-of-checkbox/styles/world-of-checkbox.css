@@ -1,0 +1,12 @@
+.WorldOfCheckbox {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  user-select: none;
+}
+.WorldOfCheckbox__Content {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
