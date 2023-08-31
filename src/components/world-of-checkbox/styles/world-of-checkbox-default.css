@@ -27,3 +27,12 @@
   height: 21px;
   transition: background 0.2s ease;
 }
+.WorldOfCheckboxDefault__One__childrenClass{
+  cursor: pointer;
+}
+.WorldOfCheckboxDefault__One__childrenClassTrue{
+  color: #007aff;
+}
+.WorldOfCheckboxDefault__One__childrenClassFalse{
+
+}

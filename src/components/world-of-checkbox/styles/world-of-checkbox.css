@@ -10,3 +10,16 @@
   gap: 10px;
   flex-direction: column;
 }
+.WorldOfCheckbox__Content__Example {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (orientation: portrait) {
+  .WorldOfCheckbox__Content__Example {
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

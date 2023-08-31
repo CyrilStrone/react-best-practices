@@ -13,6 +13,8 @@ type IWorldOfCheckboxDefault = {
     childrenClassTrue?: string
     childrenClassFalse?: string
 
+    childrenChangeCheck?: boolean
+
     imageTrue?: string
     imageFalse?: string
     imageDefault?: string
@@ -71,7 +73,7 @@ export const WorldOfCheckboxDefault = (params: IWorldOfCheckboxDefault) => {
             </div>
             {
                 params.children ?
-                    <div className={check ? params.childrenClass + " " + params.childrenClassTrue : params.childrenClass + " " + params.childrenClassFalse} >
+                    <div onClick={() => params.childrenChangeCheck && changeCheck()} className={check ? params.childrenClass + " " + params.childrenClassTrue : params.childrenClass + " " + params.childrenClassFalse} >
                         {params.children}
                     </div>
                     : null
