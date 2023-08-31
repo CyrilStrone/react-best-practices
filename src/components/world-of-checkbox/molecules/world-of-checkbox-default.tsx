@@ -19,10 +19,6 @@ type IWorldOfCheckboxDefault = {
     imageFalse?: string
     imageDefault?: string
 
-    symbolTrue?: string
-    symbolFalse?: string
-    symbolDefault?: string
-
     check: boolean
     setCheck?: React.Dispatch<React.SetStateAction<boolean>>
     updateCheck?: (check: boolean) => void
@@ -55,19 +51,9 @@ export const WorldOfCheckboxDefault = (params: IWorldOfCheckboxDefault) => {
                                 }
                             </>
                             :
-                            params.symbolDefault || params.symbolTrue || params.symbolFalse ?
-                                <>
-                                    {
-                                        check ?
-                                            <div className={params.centerClass + " " + params.centerClassTrue} >{params.symbolTrue || params.symbolDefault || params.imageFalse}</div>
-                                            :
-                                            <div className={params.centerClass + " " + params.centerClassFalse} >{params.symbolFalse || params.symbolDefault || params.symbolTrue}</div>
-                                    }
-                                </>
-                                :
-                                <>
-                                    <div className={check ? params.centerClass + " " + params.centerClassTrue : params.centerClass + " " + params.centerClassFalse} />
-                                </>
+                            <>
+                                <div className={check ? params.centerClass + " " + params.centerClassTrue : params.centerClass + " " + params.centerClassFalse} />
+                            </>
                     }
                 </div>
             </div>
