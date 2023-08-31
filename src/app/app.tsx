@@ -10,7 +10,7 @@ import './app.css'
 function App() {
 
   return (
-    <div>
+    <div className='App'>
       <WorldOfCheckbox />
       <WorldOfInput />
       <WorldOfSelect />

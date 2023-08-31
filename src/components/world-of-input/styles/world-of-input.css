@@ -1,0 +1,24 @@
+.WorldOfInput {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+.WorldOfInput__Content {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.WorldOfInput__Content__Example {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (orientation: portrait) {
+  .WorldOfInput__Content__Example {
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
