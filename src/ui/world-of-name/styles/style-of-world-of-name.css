@@ -1,0 +1,51 @@
+.WorldOfName__Block__Inside {
+  padding: 4px;
+  border-radius: 6px;
+  border: 0.5px solid rgba(60, 60, 67, 0.29);
+  background: #cccccc;
+  display: flex;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.WorldOfName__Block {
+  border: 1px dashed #9747ff;
+  border-radius: 10px;
+  padding: 4px;
+  user-select: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+  user-select: none;
+}
+.WorldOfName__Block__Title {
+  font-weight: 500;
+  font-size: 12px;
+  padding: 4px;
+  display: inline-block;
+
+  color: #000000;
+  border-radius: 6px;
+  border: 0.5px solid rgba(60, 60, 67, 0.29);
+  background: #cccccc;
+}
+
+.WorldOfNameExample {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.WorldOfNameExample__Title {
+}
+
+@media (orientation: portrait) {
+  .WorldOfNameExample {
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}

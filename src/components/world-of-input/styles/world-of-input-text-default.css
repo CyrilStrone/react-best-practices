@@ -1,0 +1,84 @@
+input[type="text"] {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  margin: 0;
+}
+input[type="text"]:focus {
+  outline: none;
+}
+.WorldOfInputTextDefault__One {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.WorldOfInputTextDefault__One__Input {
+  padding: 0px 6px 0px 6px;
+  border-radius: 10px;
+  background: rgba(118, 118, 128, 0.24);
+  height: 36px;
+  border: none;
+  width: 225px;
+  color: #fff;
+  font-family: SF Pro;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+.WorldOfInputTextDefault__One__Input::placeholder {
+  color: #fff;
+  font-family: SF Pro;
+  font-size: 17px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 22px;
+}
+.WorldOfInputTextDefault__One__Icon {
+  position: absolute;
+  left: 8px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.WorldOfInputTextDefault__One:has(
+    .WorldOfInputTextDefault__One__Icon,
+    .WorldOfInputTextDefault__One__SVGIcon
+  )
+  .WorldOfInputTextDefault__One__Input {
+  padding-left: 32px;
+}
+.WorldOfInputTextDefault__One__SVGIcon {
+  position: absolute;
+  left: 8px;
+  fill: #fff;
+  cursor: pointer;
+  transition: fill 0.2s ease;
+}
+.WorldOfInputTextDefault__One__SVGIcon:hover {
+  position: absolute;
+  left: 8px;
+  fill: rgba(60, 60, 67, 0.6);
+}
+.WorldOfInputTextDefault__One:has(.WorldOfInputTextDefault__One__IconClear)
+  .WorldOfInputTextDefault__One__Input {
+  padding-right: 32px;
+}
+.WorldOfInputTextDefault__One__IconClear {
+  position: absolute;
+  right: 8px;
+  object-fit: cover;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  width: 20px;
+  height: 17px;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}

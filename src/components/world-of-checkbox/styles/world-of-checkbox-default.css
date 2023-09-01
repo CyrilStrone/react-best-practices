@@ -21,8 +21,8 @@
   cursor: pointer;
   object-fit: cover;
   background-repeat: no-repeat;
-  background-size: auto;
-  background-position: top;
+  background-size: contain;
+  background-position: center;
   width: 24px;
   height: 21px;
   transition: background 0.2s ease;
