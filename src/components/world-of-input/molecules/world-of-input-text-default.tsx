@@ -1,21 +1,5 @@
+import { useState } from "react"
 import styled from "styled-components"
-
-type IWorldOfInputTextDefault = {
-    disabled?: boolean
-    readonly?: boolean
-
-    iconSearch?: string
-    iconSearchHover?: string
-    iconSearchActive?: string
-
-    children?: React.ReactNode
-
-    className?: string
-
-    iconClear?: string
-    iconClearHover?: string
-    iconClearActive?: string
-}
 
 type IWorldOfInputTextDefaultIcon = {
     $iconSearch?: string
@@ -60,13 +44,58 @@ const IconClear = styled.div<IWorldOfInputTextDefaultIconClear>`
     `
     }
 `;
+
+type IWorldOfInputTextDefault = {
+    disabled?: boolean
+    readonly?: boolean
+
+    children?: React.ReactNode
+
+    className?: string
+
+    iconSearch?: string
+    iconSearchHover?: string
+    iconSearchActive?: string
+
+    iconClear?: string
+    iconClearHover?: string
+    iconClearActive?: string
+    isActiveClearAlways?: boolean
+    
+    value: string | null
+    setValue?: React.Dispatch<React.SetStateAction<string | null>>
+    updateValue?: (value: string | null) => void
+    goSearch?: (value: string | null) => void
+}
 export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
+    const [isActiveClear, setIsActiveClear] = useState(false);
+    const changeValue = (value: string | null) => {
+        if (params.updateValue) params.updateValue(value)
+        if (params.setValue) params.setValue(value)
+    }
+    const goSearch = () => {
+        if (params.goSearch) params.goSearch(params.value)
+    }
+    const handleFocus = () => {
+        setIsActiveClear(true);
+    };
+
+    const handleBlur = () => {
+        setTimeout(()=>setIsActiveClear(false),100)
+    };
     return (
         <div className={params.className}>
             <input
-                className={params.className + "__Input"}
+                value={params.value || ""}
+                onChange={(event) => changeValue(event.target.value)}
+                className={
+                    params.className + "__Input" +
+                    `${params.value ? (" " + params.className + "__Input-Value") : ""}`
+                }
                 disabled={params.disabled}
                 readOnly={params.readonly}
+                onFocus={handleFocus}
+                onBlur={handleBlur}
                 type="text"
             />
             {params.iconSearch ?
@@ -74,22 +103,40 @@ export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
                     $iconSearch={params.iconSearch}
                     $iconSearchHover={params.iconSearchHover}
                     $iconSearchActive={params.iconSearchActive}
-                    className={params.className + "__Icon"}
+                    onClick={goSearch}
+                    className={params.className +
+                        "__IconHover" +
+                        `${params.value ? (" " + params.className + "__IconHover__Input-Value") : ""}`
+                    }
                 />
-                : params.children ?
-                    params.children :
-                    null
+                : null
             }
             {
-                params.iconClear ?
+                isActiveClear && params.value && params.iconClear || params.isActiveClearAlways && params.value ?
                     <IconClear
                         tabIndex={0}
-                        className={params.className + "__IconClear"}
+                        className={
+                            params.className + "__IconClear" +
+                            `${params.value ? (" " + params.className + "__IconClear__Input-Value") : ""}`
+                        }
                         $iconClear={params.iconClear}
                         $iconClearHover={params.iconClearHover}
                         $iconClearActive={params.iconClearActive}
+                        onClick={() => changeValue(null)}
                     />
                     : null
+            }
+            {
+                <div className={
+                    params.className + "__Children" +
+                    `${params.value ? (" " + params.className + "__Children__Input-Value") : ""}`
+                }>
+                    {
+                        params.children ?
+                            params.children :
+                            null
+                    }
+                </div>
             }
         </div>
     );
