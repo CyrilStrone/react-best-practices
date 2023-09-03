@@ -96,6 +96,7 @@ type IWorldOfInputTextDefault = {
     isRequired?: boolean
     isValid?: boolean
     children?: React.ReactNode
+    pattern?: string
 
     className?: string
 
@@ -126,34 +127,31 @@ type IWorldOfInputTextDefault = {
 }
 export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
     const [isActiveClear, setIsActiveClear] = useState(false);
-    const [mouseIsDown, setMouseIsDown] = useState(false);
-    const [isValid, setIsValid] = useState<boolean | null>(null);
 
     const changeValue = (value: string | null) => {
+        setIsActiveClear(true);
         if (params.updateValue) params.updateValue(value)
         if (params.setValue) params.setValue(value)
     }
     const goSearch = () => {
         if (params.goSearch) params.goSearch(params.value)
     }
-    const handleFocus = () => {
+    const handleMouseEnter = () => {
         setIsActiveClear(true);
     };
-    const handleBlur = () => {
-        if (!mouseIsDown) {
-            setIsActiveClear(false)
-        }
+    const handleMouseLeave = () => {
+        setIsActiveClear(false)
     };
-    const handleInValid = () => {
-        if (isValid == null) {
-            setIsValid(true);
-        } else {
-            setIsValid(!isValid);
-        }
+    const handleInvalid = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const input = event.target;
+        input.setCustomValidity('Пожалуйста, введите правильное значение.');
     };
-    document.addEventListener('mouseup', ()=>{setMouseIsDown(false);});
+
     return (
-        <div className={params.className}>
+        <div className={params.className}
+            onFocus={handleMouseEnter}
+            onBlur={handleMouseLeave}
+        >
             <input
                 value={params.value || ""}
                 onChange={(event) => changeValue(event.target.value)}
@@ -164,20 +162,16 @@ export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
                 disabled={params.disabled}
                 readOnly={params.readonly}
                 required={params.isRequired}
-                onFocus={handleFocus}
-                onBlur={handleBlur}
-                onInvalid={handleInValid}
-                onMouseDown={() => setMouseIsDown(true)}
-                onMouseUp={() => setMouseIsDown(false)}
+                pattern={params.pattern}
+                onInvalid={handleInvalid}
                 type={params.isNumber ? "number" : "text"}
+
             />
             {params.iconSearch ?
                 <IconSearch
                     $iconSearch={params.iconSearch}
                     $iconSearchHover={params.iconSearchHover}
                     $iconSearchActive={params.iconSearchActive}
-                    onMouseDown={() => setMouseIsDown(true)}
-                    onMouseUp={() => setMouseIsDown(false)}
                     onClick={goSearch}
                     className={params.className +
                         "__IconHover" +
@@ -192,8 +186,6 @@ export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
                         $iconClear={params.iconClear}
                         $iconClearHover={params.iconClearHover}
                         $iconClearActive={params.iconClearActive}
-                        onMouseDown={() => setMouseIsDown(true)}
-                        onMouseUp={() => setMouseIsDown(false)}
                         onClick={() => changeValue(null)}
                         className={
                             params.className + "__IconClear" +

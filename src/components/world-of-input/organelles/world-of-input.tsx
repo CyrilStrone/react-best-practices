@@ -72,7 +72,7 @@ export const WorldOfInput = () => {
                     iconClearHover={iconClearHover}
                 />
             </WorldOfNameExample>
-            <WorldOfNameExample title={"Icon, Active Icon, Clear Icon, Hover Clear Icon, Active Clear Icon"}>
+            <WorldOfNameExample title={"Icon, Active Icon, Clear Icon, Hover Clear Icon, Active Clear Icon, updateValue"}>
                 <WorldOfInputTextDefault
                     value={value}
                     updateValue={updateValue}
@@ -88,7 +88,7 @@ export const WorldOfInput = () => {
             <WorldOfNameExample title={"Icon, Active Icon, Clear Icon, Hover Clear Icon, Active Clear Icon, Go Search"}>
                 <WorldOfInputTextDefault
                     value={value}
-                    updateValue={updateValue}
+                    setValue={setValue}
                     className={$NAME_OF_CLASS_NAME}
                     goSearch={goSearch}
                     iconSearch={IconSearch}
@@ -110,6 +110,19 @@ export const WorldOfInput = () => {
                     iconClear={IconClear}
                     iconClearHover={iconClearHover}
                     isNumber
+                />
+            </WorldOfNameExample>
+            <WorldOfNameExample title={"Icon, Hover Icon, Clear Icon, Hover Clear Icon, isRequired"}>
+                <WorldOfInputTextDefault
+                    value={value}
+                    setValue={setValue}
+                    className={$NAME_OF_CLASS_NAME}
+                    iconSearch={IconSearch}
+                    iconSearchHover={IconSearchHover}
+                    iconClear={IconClear}
+                    iconClearHover={iconClearHover}
+                    isRequired
+                    pattern={"[A-Za-z]+"}
                 />
             </WorldOfNameExample>
         </>
