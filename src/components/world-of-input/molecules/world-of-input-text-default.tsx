@@ -1,12 +1,12 @@
 import { useState } from "react"
 import styled from "styled-components"
 
-type IWorldOfInputTextDefaultIcon = {
+type IWorldOfInputTextDefaultIconSearch = {
     $iconSearch?: string
     $iconSearchHover?: string
     $iconSearchActive?: string
 }
-const Icon = styled.div<IWorldOfInputTextDefaultIcon>`
+const IconSearch = styled.div<IWorldOfInputTextDefaultIconSearch>`
     background-image: url(${props => props.$iconSearch});
     ${props => props.$iconSearchHover && `
         &:hover {
@@ -45,10 +45,56 @@ const IconClear = styled.div<IWorldOfInputTextDefaultIconClear>`
     }
 `;
 
+type IWorldOfInputTextDefaultIconValid = {
+    $iconValid?: string
+    $iconValidHover?: string
+    $iconValidActive?: string
+}
+const IconValid = styled.div<IWorldOfInputTextDefaultIconValid>`
+    background-image: url(${props => props.$iconValid});
+    ${props => props.$iconValidHover && `
+        &:hover {
+            background-image: url(${props.$iconValidHover});
+        }
+    `
+    }
+    ${props => props.$iconValidActive && `
+        &:active {
+            background-image: url(${props.$iconValidActive});
+            transition: background 0s ease;
+        }
+    `
+    }
+`;
+
+type IWorldOfInputTextDefaultIconInValid = {
+    $iconInValid?: string
+    $iconInValidHover?: string
+    $iconInValidActive?: string
+}
+const IconInValid = styled.div<IWorldOfInputTextDefaultIconInValid>`
+    background-image: url(${props => props.$iconInValid});
+    ${props => props.$iconInValidHover && `
+        &:hover {
+            background-image: url(${props.$iconInValidHover});
+        }
+    `
+    }
+    ${props => props.$iconInValidActive && `
+        &:active {
+            background-image: url(${props.$iconInValidActive});
+            transition: background 0s ease;
+        }
+    `
+    }
+`;
+
 type IWorldOfInputTextDefault = {
     disabled?: boolean
     readonly?: boolean
-
+    isNumber?: boolean
+    isRequired?: boolean
+    isValid?: boolean
     children?: React.ReactNode
 
     className?: string
@@ -61,7 +107,18 @@ type IWorldOfInputTextDefault = {
     iconClearHover?: string
     iconClearActive?: string
     isActiveClearAlways?: boolean
-    
+
+    iconValid?: string
+    iconValidHover?: string
+    iconValidActive?: string
+
+    iconInValid?: string
+    iconInValidHover?: string
+    iconInValidActive?: string
+
+    validMessage?: string
+    inValidMessage?: string
+
     value: string | null
     setValue?: React.Dispatch<React.SetStateAction<string | null>>
     updateValue?: (value: string | null) => void
@@ -69,6 +126,9 @@ type IWorldOfInputTextDefault = {
 }
 export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
     const [isActiveClear, setIsActiveClear] = useState(false);
+    const [mouseIsDown, setMouseIsDown] = useState(false);
+    const [isValid, setIsValid] = useState<boolean | null>(null);
+
     const changeValue = (value: string | null) => {
         if (params.updateValue) params.updateValue(value)
         if (params.setValue) params.setValue(value)
@@ -79,10 +139,19 @@ export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
     const handleFocus = () => {
         setIsActiveClear(true);
     };
-
     const handleBlur = () => {
-        setTimeout(()=>setIsActiveClear(false),100)
+        if (!mouseIsDown) {
+            setIsActiveClear(false)
+        }
     };
+    const handleInValid = () => {
+        if (isValid == null) {
+            setIsValid(true);
+        } else {
+            setIsValid(!isValid);
+        }
+    };
+    document.addEventListener('mouseup', ()=>{setMouseIsDown(false);});
     return (
         <div className={params.className}>
             <input
@@ -94,15 +163,21 @@ export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
                 }
                 disabled={params.disabled}
                 readOnly={params.readonly}
+                required={params.isRequired}
                 onFocus={handleFocus}
                 onBlur={handleBlur}
-                type="text"
+                onInvalid={handleInValid}
+                onMouseDown={() => setMouseIsDown(true)}
+                onMouseUp={() => setMouseIsDown(false)}
+                type={params.isNumber ? "number" : "text"}
             />
             {params.iconSearch ?
-                <Icon
+                <IconSearch
                     $iconSearch={params.iconSearch}
                     $iconSearchHover={params.iconSearchHover}
                     $iconSearchActive={params.iconSearchActive}
+                    onMouseDown={() => setMouseIsDown(true)}
+                    onMouseUp={() => setMouseIsDown(false)}
                     onClick={goSearch}
                     className={params.className +
                         "__IconHover" +
@@ -114,17 +189,30 @@ export const WorldOfInputTextDefault = (params: IWorldOfInputTextDefault) => {
             {
                 isActiveClear && params.value && params.iconClear || params.isActiveClearAlways && params.value ?
                     <IconClear
-                        tabIndex={0}
+                        $iconClear={params.iconClear}
+                        $iconClearHover={params.iconClearHover}
+                        $iconClearActive={params.iconClearActive}
+                        onMouseDown={() => setMouseIsDown(true)}
+                        onMouseUp={() => setMouseIsDown(false)}
+                        onClick={() => changeValue(null)}
                         className={
                             params.className + "__IconClear" +
                             `${params.value ? (" " + params.className + "__IconClear__Input-Value") : ""}`
                         }
-                        $iconClear={params.iconClear}
-                        $iconClearHover={params.iconClearHover}
-                        $iconClearActive={params.iconClearActive}
-                        onClick={() => changeValue(null)}
                     />
                     : null
+            }
+            {
+                params.isValid ?
+                    <IconValid />
+                    :
+                    null
+            }
+            {
+                params.isValid ?
+                    <IconInValid />
+                    :
+                    null
             }
             {
                 <div className={

@@ -100,6 +100,18 @@ export const WorldOfInput = () => {
                     isActiveClearAlways
                 />
             </WorldOfNameExample>
+            <WorldOfNameExample title={"Icon, Hover Icon, Clear Icon, Hover Clear Icon, Number"}>
+                <WorldOfInputTextDefault
+                    value={value}
+                    setValue={setValue}
+                    className={$NAME_OF_CLASS_NAME}
+                    iconSearch={IconSearch}
+                    iconSearchHover={IconSearchHover}
+                    iconClear={IconClear}
+                    iconClearHover={iconClearHover}
+                    isNumber
+                />
+            </WorldOfNameExample>
         </>
     );
 };
