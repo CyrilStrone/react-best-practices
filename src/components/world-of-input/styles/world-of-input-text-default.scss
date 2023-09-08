@@ -52,10 +52,11 @@ input[type="number"]::-webkit-inner-spin-button {
   // background: rgba(118, 118, 128, 0.8);
 }
 .#{$NAME_OF_CLASS_NAME}__Input-InValid {
-  border: 2px solid red;
+  border-bottom: 2px solid red;
 }
 .#{$NAME_OF_CLASS_NAME}__Input-Valid {
-  border: 2px solid green;
+  border-bottom: 2px solid green;
+
 }
 /* /Input/ */
 

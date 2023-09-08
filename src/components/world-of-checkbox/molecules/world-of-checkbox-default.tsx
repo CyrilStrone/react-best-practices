@@ -1,23 +1,11 @@
 import { useEffect, useState } from "react";
 
 type IWorldOfCheckboxDefault = {
-    outsideClass?: string
-    insideClass?: string
-    generalClass?: string
-
-    centerClass?: string
-    centerClassTrue?: string
-    centerClassFalse?: string
-
-    childrenClass?: string
-    childrenClassTrue?: string
-    childrenClassFalse?: string
+    className?: string
 
     childrenChangeCheck?: boolean
 
-    imageTrue?: string
-    imageFalse?: string
-    imageDefault?: string
+    icon?: React.ReactNode
 
     check: boolean
     setCheck?: React.Dispatch<React.SetStateAction<boolean>>
@@ -37,29 +25,34 @@ export const WorldOfCheckboxDefault = (params: IWorldOfCheckboxDefault) => {
         setCheck(params.check)
     }, [params.check])
     return (
-        <div className={params.generalClass}>
-            <div className={params.outsideClass} onClick={changeCheck}>
-                <div className={params.insideClass}>
-                    {
-                        params.imageDefault || params.imageTrue || params.imageFalse ?
-                            <>
-                                {
-                                    <div
-                                        style={{ backgroundImage: `url(${check ? params.imageTrue || params.imageDefault : params.imageFalse || params.imageDefault})` }}
-                                        className={check ? params.centerClass + " " + params.centerClassTrue : params.centerClass + " " + params.centerClassFalse}
-                                    />
-                                }
-                            </>
-                            :
-                            <>
-                                <div className={check ? params.centerClass + " " + params.centerClassTrue : params.centerClass + " " + params.centerClassFalse} />
-                            </>
+        <div className={
+            params.className +
+            `${check ? (" " + params.className + "-True") : (" " + params.className + "-False")}`
+        }>
+            <div className={
+                params.className + "__Outside" +
+                `${check ? (" " + params.className + "__Outside-True") : (" " + params.className + "__Outside-False")}`
+            }
+                onClick={changeCheck}>
+                <div className={
+                    params.className + "__Inside" +
+                    `${check ? (" " + params.className + "__Inside-True") : (" " + params.className + "__Inside-False")}`
+                }>
+                    <div className={
+                        params.className + "__Icon" +
+                        `${check ? (" " + params.className + "__Icon-True") : (" " + params.className + "__Icon-False")}`
                     }
+                    >{params.icon}</div>
                 </div>
             </div>
             {
                 params.children ?
-                    <div onClick={() => params.childrenChangeCheck && changeCheck()} className={check ? params.childrenClass + " " + params.childrenClassTrue : params.childrenClass + " " + params.childrenClassFalse} >
+                    <div className={
+                        params.className + "__Children" +
+                        `${check ? (" " + params.className + "__Children-True") : (" " + params.className + "__Children-False")}`
+
+                    }
+                        onClick={() => params.childrenChangeCheck && changeCheck()}>
                         {params.children}
                     </div>
                     : null

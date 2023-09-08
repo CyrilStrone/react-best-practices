@@ -1,0 +1,46 @@
+$NAME_OF_CLASS_NAME: WorldOfCheckboxDefault__One;
+
+.#{$NAME_OF_CLASS_NAME} {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+  color: white;
+}
+.#{$NAME_OF_CLASS_NAME}__Icon {
+  font-family: sf pro display;
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 510;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+.#{$NAME_OF_CLASS_NAME}__Icon svg {
+  fill: #ebebf5;
+  transition: all 0.2s ease;
+  stroke: transparent;
+  stroke-width: 1px;
+  stroke-opacity: 0.7;
+}
+.#{$NAME_OF_CLASS_NAME}__Icon:hover svg {
+  fill: rgba(0, 122, 255, 0.5);
+}
+.#{$NAME_OF_CLASS_NAME}__Icon:active svg {
+  fill: rgba(0, 122, 255, 0.8);
+  stroke: white;
+}
+.#{$NAME_OF_CLASS_NAME}__Icon-True svg {
+  fill: #007aff;
+}
+.#{$NAME_OF_CLASS_NAME}__Children {
+  cursor: pointer;
+}
+.#{$NAME_OF_CLASS_NAME}__Children-True {
+  color: #007aff;
+}
+.#{$NAME_OF_CLASS_NAME}__Children {
+}
