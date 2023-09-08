@@ -1,19 +1,21 @@
 $NAME_OF_CLASS_NAME: WorldOfInputTextDefault__One;
 
-input[type="text"], input[type="number"] {
+input[type="text"],
+input[type="number"] {
   font-family: inherit;
   font-size: inherit;
   line-height: inherit;
   margin: 0;
 }
-input[type="text"]:focus, input[type="number"]:focus {
+input[type="text"]:focus,
+input[type="number"]:focus {
   outline: none;
 }
 
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 /* Input */
@@ -30,32 +32,39 @@ input[type="number"]::-webkit-inner-spin-button {
   border: none;
   width: 225px;
   color: #fff;
-  font-family: SF Pro;
+  font-family: sf pro display;
   font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
-  transition: background 0.2s ease;
+  transition: all 0.2s ease;
+  border: 2px solid transparent;
 }
 .#{$NAME_OF_CLASS_NAME}__Input::placeholder {
   color: #fff;
-  font-family: SF Pro;
+  font-family: sf pro display;
   font-size: 17px;
   font-style: normal;
   font-weight: 400;
   line-height: 22px;
 }
 .#{$NAME_OF_CLASS_NAME}__Input-Value {
-  background: rgba(118, 118, 128, 0.8);
+  // background: rgba(118, 118, 128, 0.8);
+}
+.#{$NAME_OF_CLASS_NAME}__Input-InValid {
+  border: 2px solid red;
+}
+.#{$NAME_OF_CLASS_NAME}__Input-Valid {
+  border: 2px solid green;
 }
 /* /Input/ */
 
-/* IconHover */
-.#{$NAME_OF_CLASS_NAME}:has(.#{$NAME_OF_CLASS_NAME}__IconHover)
+/* IconSearch */
+.#{$NAME_OF_CLASS_NAME}:has(.#{$NAME_OF_CLASS_NAME}__IconSearch)
   .#{$NAME_OF_CLASS_NAME}__Input {
   padding-left: 32px;
 }
-.#{$NAME_OF_CLASS_NAME}__IconHover {
+.#{$NAME_OF_CLASS_NAME}__IconSearch {
   position: absolute;
   left: 8px;
   object-fit: cover;
@@ -65,28 +74,21 @@ input[type="number"]::-webkit-inner-spin-button {
   width: 24px;
   height: 24px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-/* /IconHover/ */
-
-/* SVGIcon */
-.#{$NAME_OF_CLASS_NAME}:has(.#{$NAME_OF_CLASS_NAME}__SVGIcon)
-  .#{$NAME_OF_CLASS_NAME}__Input {
-  padding-left: 32px;
-}
-.#{$NAME_OF_CLASS_NAME}__SVGIcon {
-  position: absolute;
-  left: 8px;
-  fill: #fff;
-  cursor: pointer;
-  transition: fill 0.2s ease;
-}
-.#{$NAME_OF_CLASS_NAME}__SVGIcon:hover {
-  position: absolute;
-  left: 8px;
+.#{$NAME_OF_CLASS_NAME}__IconSearch svg {
   fill: rgba(60, 60, 67, 0.6);
+  transition: all 0.2s ease;
 }
-/* /SVGIcon/ */
+.#{$NAME_OF_CLASS_NAME}__IconSearch:hover svg {
+  fill: rgba(235, 235, 245, 0.6);
+}
+.#{$NAME_OF_CLASS_NAME}__IconSearch:active svg {
+  fill: #0a84ff;
+}
+/* /IconSearch/ */
 
 /* IconClear */
 .#{$NAME_OF_CLASS_NAME}:has(.#{$NAME_OF_CLASS_NAME}__IconClear)
@@ -100,10 +102,22 @@ input[type="number"]::-webkit-inner-spin-button {
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
-  width: 20px;
-  height: 17px;
+  width: 18px;
+  height: 18px;
   cursor: pointer;
-  transition: background 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.#{$NAME_OF_CLASS_NAME}__IconClear svg {
+  fill: #ebebf5;
+  transition: all 0.2s ease;
+}
+.#{$NAME_OF_CLASS_NAME}__IconClear:hover svg {
+  fill: rgba(60, 60, 67, 0.6);
+}
+.#{$NAME_OF_CLASS_NAME}__IconClear:active svg {
+  fill: rgba(60, 60, 67, 0.6);
 }
 /* /IconClear/ */
 
@@ -112,3 +126,11 @@ input[type="number"]::-webkit-inner-spin-button {
   display: contents;
 }
 /* /Children/ */
+/* Valid */
+.#{$NAME_OF_CLASS_NAME}__Valid {
+  position: absolute;
+  top: 100%;
+  left: 6px;
+  color: black;
+}
+/* /Valid/ */

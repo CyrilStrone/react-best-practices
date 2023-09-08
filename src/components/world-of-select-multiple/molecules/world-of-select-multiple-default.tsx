@@ -206,7 +206,7 @@ export const WorldOfSelectMultipleDefault = (params: IWorldOfSelectMultipleDefau
                         onClick={goSearch}
                         className={params.className +
                             "__IconHover" +
-                            `${params.value ? (" " + params.className + "__IconHover__Input-Value") : ""}`
+                            `${params.value ? (" " + params.className + "__IconHover-Value") : ""}`
                         }
                     />
                     : null
@@ -220,7 +220,7 @@ export const WorldOfSelectMultipleDefault = (params: IWorldOfSelectMultipleDefau
                         onClick={() => changeValue(null)}
                         className={
                             params.className + "__IconClear" +
-                            `${params.value ? (" " + params.className + "__IconClear__Input-Value") : ""}`
+                            `${params.value ? (" " + params.className + "__IconClear-Value") : ""}`
                         }
                     />
                     : null
