@@ -5,7 +5,7 @@
   "type": "module",
   "homepage": "https://cyrilstrone.github.io/react-best-practices",
   "scripts": {
-    "predeploy": "npm run dist",
+    "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "dev": "vite",
     "build": "tsc && vite build",
